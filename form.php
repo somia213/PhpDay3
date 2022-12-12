@@ -1,23 +1,38 @@
 <?php
+error_reporting(0);
+$n=$_GET['userName'];
+$mail=$_GET['email'];
+$gno=$_GET['gno'];
+$d= $_GET['details'];
+$gn=$_GET['gender'];
+$cour=[];
+$cour=$_GET['courses[]'];
+$ag=$_GET['agree'];
 if(isset($_GET['submit'])){
       $err=[];
-      if(empty($_GET['userName'])){
+      if(empty($n)){
           $err=" Name is required";
             echo "<font color=red >" . $err . "</font>" ."<br>" ;
       }
-      if(empty($_GET['email'])){
+      if(empty($mail)){
         $err=" E-Mail is required";
         echo "<font color=red >" . $err . "</font>"  . "<br>";
     }
-
-    if(empty($_GET['gender'])){
+    
+    if(empty($gn)){
       $err=" Gender is required";
       echo "<font color=red >" . $err . "</font>" . "<br>" ;
+    }elseif ((!empty($gn)) && ($gn == 'male')) {
+      $gn='checked="checked"';
+    }else{
+      $gn='checked="checked"';
     }
 
-    if(empty($_GET['agree'])){
+    if(empty($ag)){
       $err=" You must agree to terms ";
       echo "<font color=red >" . $err . "</font>" . "<b>";
+    }else{
+      $ag='checked="checked"';
     }
     if(empty($err)){
       echo "Your Name is : " . ($_GET['userName']) . "<br>";
@@ -25,8 +40,10 @@ if(isset($_GET['submit'])){
       echo "Group NO. is : " . ($_GET['gno']). "<br>";
       echo " class details is : " .($_GET['details']). "<br>";
       echo " Gender is : " . ($_GET['gender']). "<br>";
-         foreach($_GET['courses'] as $cour){
+         foreach($_GET['courses'] as $cours){
+          $cour=$cours ;
         echo " you choose course :  " . $cour. "<br>";
+        
          }
       echo " your agree is : " . ($_GET['agree']). "<br>";
     }
@@ -53,49 +70,49 @@ if(isset($_GET['submit'])){
     <form action="<?php $_PHP_SELF ?>" method="GET" >
       <div class="allDivs">
         <label>Name</label>
-        <input type="text" name="userName">
+        <input type="text" name="userName" value="<?php echo $n;?>">
       </div>
       <br>
       <div class="allDivs">
         <label>E_Mail</label>
-        <input type="email" name="email">
+        <input type="email" name="email" value="<?php echo $mail;?>">
       </div>
       <br>
       <div class="allDivs">
         <label>Group NO.</label>
-        <input type="number" name="gno">
+        <input type="number" name="gno" value="<?php echo $gno;?>">
       </div>
       <br>
       <div class="allDivs">
         <label>Class details</label>
-        <textarea name="details"></textarea>
+        <textarea name="details"><?php echo $d;?></textarea>
       </div>
       <br>
       <div class="allDivs">
         <label>Gender</label>
         <div class="gender">
-          <input type="radio" name="gender" value="male">
+          <input type="radio" name="gender" <?php echo $gn;?> value="male">
           <label for="louie">male</label>
-          <input type="radio" name="gender" value="female"> 
+          <input type="radio" name="gender" <?php echo $gn;?> value="female"> 
           <label for="louie">female</label>
         </div>
       </div>
       <br>
       <div class="allDivs">
         <label>Select Courses</label>
-        <select name="courses[]" multiple>
-          <option value="HTML">HTML</option>
-          <option value="CSS">CSS</option>
-          <option value="JS">JS</option>
-          <option value="GIT">GIT</option>
-          <option value="PHP">PHP</option>
-          <option value="MYSQL">MYSQL</option>
+        <select name="courses[]" value="<?php echo 'selected';?>" multiple>
+          <option name="courses[]" value="HTML">HTML</option>
+          <option name="courses[]" value="CSS">CSS</option>
+          <option name="courses[]" value="JS">JS</option>
+          <option name="courses[]" value="GIT">GIT</option>
+          <option name="courses[]" value="PHP">PHP</option>
+          <option name="courses[]"value="MYSQL">MYSQL</option>
         </select>
       </div>
       <br>
       <div class="allDivs">
         <label>Agree</label>
-        <input type="checkbox" name="agree">
+        <input type="checkbox" name="agree"  <?php echo $ag;?>>
       </div>
       <br>
       <input type="submit" class="btn" value="submit" name="submit">
