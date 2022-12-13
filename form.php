@@ -10,30 +10,7 @@ $cour=$_GET['courses[]'];
 $ag=$_GET['agree'];
 if(isset($_GET['submit'])){
       $err=[];
-      if(empty($n)){
-          $err=" Name is required";
-            echo "<font color=red >" . $err . "</font>" ."<br>" ;
-      }
-      if(empty($mail)){
-        $err=" E-Mail is required";
-        echo "<font color=red >" . $err . "</font>"  . "<br>";
-    }
     
-    if(empty($gn)){
-      $err=" Gender is required";
-      echo "<font color=red >" . $err . "</font>" . "<br>" ;
-    }elseif ((!empty($gn)) && ($gn == 'male')) {
-      $gn='checked="checked"';
-    }else{
-      $gn='checked="checked"';
-    }
-
-    if(empty($ag)){
-      $err=" You must agree to terms ";
-      echo "<font color=red >" . $err . "</font>" . "<b>";
-    }else{
-      $ag='checked="checked"';
-    }
     if(empty($err)){
       echo "Your Name is : " . ($_GET['userName']) . "<br>";
       echo " E_Mail is : " . ($_GET['email']). "<br>";
@@ -71,11 +48,21 @@ if(isset($_GET['submit'])){
       <div class="allDivs">
         <label>Name</label>
         <input type="text" name="userName" value="<?php echo $n;?>">
+        <label style="background: white;"><?php if(empty($n)){
+          $err=" Name is required";
+            echo "<font color=red >" . $err . "</font>" ."<br>" ;
+      }?></label>
       </div>
       <br>
       <div class="allDivs">
         <label>E_Mail</label>
         <input type="email" name="email" value="<?php echo $mail;?>">
+        <label style="background: white;">
+          <?php  if(empty($mail)){
+        $err=" E-Mail is required";
+        echo "<font color=red >" . $err . "</font>"  . "<br>";
+    }?>
+        </label>
       </div>
       <br>
       <div class="allDivs">
@@ -95,6 +82,17 @@ if(isset($_GET['submit'])){
           <label for="louie">male</label>
           <input type="radio" name="gender" <?php echo $gn;?> value="female"> 
           <label for="louie">female</label>
+          <label style="background: white;">
+            <?php if(empty($gn)){
+      $err=" Gender is required";
+      echo "<font color=red >" . $err . "</font>" . "<br>" ;
+    }elseif ((!empty($gn)) && ($gn == 'male')) {
+      $gn='checked="checked"';
+    }else{
+      $gn='checked="checked"';
+    }
+    ?>
+          </label>
         </div>
       </div>
       <br>
@@ -111,8 +109,16 @@ if(isset($_GET['submit'])){
       </div>
       <br>
       <div class="allDivs">
-        <label>Agree</label>
+        <label >Agree</label>
         <input type="checkbox" name="agree"  <?php echo $ag;?>>
+        <label style="background: white;">
+          <?php if(empty($ag)){
+      $err=" You must agree to terms ";
+      echo "<font color=red >" . $err . "</font>" . "<b>";
+    }else{
+      $ag='checked="checked"';
+    }?>
+        </label>
       </div>
       <br>
       <input type="submit" class="btn" value="submit" name="submit">
