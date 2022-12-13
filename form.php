@@ -100,13 +100,13 @@ if(isset($_GET['submit'])){
       <br>
       <div class="allDivs">
         <label>Select Courses</label>
-        <select name="courses[]" value="<?php echo 'selected';?>" multiple>
-          <option name="courses[]" value="HTML">HTML</option>
-          <option name="courses[]" value="CSS">CSS</option>
-          <option name="courses[]" value="JS">JS</option>
-          <option name="courses[]" value="GIT">GIT</option>
-          <option name="courses[]" value="PHP">PHP</option>
-          <option name="courses[]"value="MYSQL">MYSQL</option>
+        <select name="courses[]"  multiple>
+          <option <?php if(isset($cour) && in_array( "HTML" , $_GET['courses'])) echo 'selected';?> value="HTML">HTML</option>
+          <option <?php if(isset($cour) && in_array( "CSS" , $_GET['courses'])) echo 'selected';?> value="CSS">CSS</option>
+          <option <?php if(isset($cour) && in_array( "JS" , $_GET['courses'])) echo 'selected';?> value="JS">JS</option>
+          <option <?php if(isset($cour) && in_array( "GIT" , $_GET['courses'])) echo 'selected';?> value="GIT">GIT</option>
+          <option <?php if(isset($cour) && in_array( "PHP" , $_GET['courses']))  echo 'selected';?> value="PHP">PHP</option>
+          <option <?php if(isset($cour) && in_array( "MYSQL" , $_GET['courses'])) echo 'selected';?> value="MYSQL">MYSQL</option>
         </select>
       </div>
       <br>
